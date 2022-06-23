@@ -7,11 +7,11 @@ let routeProps = {
   startPosition: { lat: -23.5489, lng: -46.6388 },
   endPosition: { lat: -23.55, lng: -46.64 }
 }
-let route = new Route(routeProps);
+let route = Route.create(routeProps);
 
 describe('Create Route Tests', () => {
   test('constructor', () => {
-    route = new Route(routeProps);
+    route = Route.create(routeProps);
     expect(route.id).toBeDefined();
     expect(route.title).toBe('Minha primeira rota');
     expect(route.startPosition).toStrictEqual({ lat: -23.5489, lng: -46.6388 });
@@ -20,7 +20,7 @@ describe('Create Route Tests', () => {
   })
 
   test('constructor with empty points', () => {
-    route = new Route({
+    route = Route.create({
       ...routeProps
     });
     expect(route.props).toStrictEqual({
@@ -29,7 +29,7 @@ describe('Create Route Tests', () => {
   })
   
   test('constructor with points', () => {
-    route = new Route({
+    route = Route.create({
       ...routeProps,
       points: [ 
         { lat: -23.64, lng: -46.53},
@@ -71,7 +71,7 @@ describe('Update Route Tests', () => {
 });
 
 describe('Route toJSON Tests', () => {
-  let route = new Route({...routeProps});
+  let route = Route.create({...routeProps});
   test('toJSON method', () => {
     expect(route.toJSON()).toStrictEqual({
       ...routeProps, points: []

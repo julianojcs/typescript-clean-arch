@@ -1,3 +1,9 @@
+GET http://localhost:3000/
+
+###
+GET http://localhost:3000/home
+
+###
 GET http://localhost:3000/routes
 
 ###
@@ -5,7 +11,7 @@ POST http://localhost:3000/routes
 Content-Type: application/json
 
 {
-  "title": "Minha primeira rota", 
-  "startPosition": { "lat": -23.5489, "lng": -46.6388 },
-  "endPosition": { "lat": -23.55, "lng": -46.64 }
+  "title": "Segunda Rota", 
+  "startPosition": { "lat": -23.8129, "lng": -46.1143 },
+  "endPosition": { "lat": -23.90, "lng": -46.47 }
 }

@@ -6,7 +6,8 @@ export type LatLng = {
 }
 
 export type RouteProps = {
-  readonly id?: string;
+  // readonly id?: string;
+  id?: string;
   title: string, 
   startPosition: LatLng, 
   endPosition: LatLng, 
@@ -25,16 +26,28 @@ export class Route {
   // public readonly id: string;
   public props: Required<RouteProps>
   
-  constructor(props: RouteProps) {
+  private constructor(props: RouteProps) {
+    if (!props) {
+      //@ts-expect-error used for ORM
+      this.props = {}
+      return;
+    }
     this.props = {
       id: props.id || crypto.randomUUID(),
       ...props,
       points: props.points || []
     };
   }
+
+  static create(props: RouteProps): Route {
+    return new Route(props);
+  }
   
   get id() {
     return this.props.id;
+  }
+  set id(value: string) {
+    this.props.id = value;
   }
   get title() {
     return this.props.title;

@@ -1,12 +1,12 @@
 import { RouteInMemoryRepository } from "./route-in-memory.repository";
-import { Route } from "../../domain/route.entity";
+import { Route, RouteProps } from "../../../domain/route.entity";
 
-let routeProps = {
+let routeProps: RouteProps = {
   title: 'Minha rota', 
   startPosition: { lat: -23.5489, lng: -46.6388 },
   endPosition: { lat: -23.55, lng: -46.64 }
 }
-let route = new Route(routeProps);
+let route = Route.create(routeProps);
 
 describe('RouteInMemory Repository Tests', () => {
   it('should insert a new route', async () => {
@@ -19,7 +19,7 @@ describe('RouteInMemory Repository Tests', () => {
     const routes: Route[] = [];
     const repository = new RouteInMemoryRepository();
     for (let i=0; i<3; i++) {
-      let route = new Route({...routeProps, title: `Minha rota #${i+1}`});
+      let route = Route.create({...routeProps, title: `Minha rota #${i+1}`});
       await repository.insert(route);
       routes.push(route);
     }

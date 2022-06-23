@@ -1,4 +1,4 @@
-import { RouteInMemoryRepository } from "../infra/db/route-in-memory.repository";
+import { RouteInMemoryRepository } from "../infra/db/in-memory/route-in-memory.repository";
 import { CreateRouteOutput, CreateRouteUseCase } from "./create-route.use-case";
 import { ListAllRoutesUseCase } from "./list-all-routes.use-case";
 import { Route } from "../domain/route.entity";
@@ -16,7 +16,7 @@ describe('ListAllRoutesUseCase Tests', () => {
   it('should list all routes', async () => {
     const routes: CreateRouteOutput[] = [];
     for (let i=0; i<3; i++) {
-      let result = await createRouteUseCase.execute({...routeProps, title: `Minha rota #${i+1}`});
+      const result = await createRouteUseCase.execute({...routeProps, title: `Minha rota #${i+1}`});
       routes.push(result);
     }
     const listAllRoutesUseCase = new ListAllRoutesUseCase(repository)
