@@ -1,15 +1,5 @@
-import { title } from 'process';
-import { DataSource } from 'typeorm'
+import { dataSourceInMemory as dataSource } from './dataSource';
 import { Route } from '../../../domain/route.entity'
-import { RouteSchema } from './route.schema';
-
-const dataSource = new DataSource({
-  type: 'sqlite',
-  database: ':memory:',
-  synchronize: true,
-  logging: false,
-  entities: [RouteSchema],
-})
 
 beforeEach(async () => {
   await dataSource.initialize();

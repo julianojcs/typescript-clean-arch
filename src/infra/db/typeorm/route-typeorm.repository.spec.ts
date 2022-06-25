@@ -1,7 +1,6 @@
-import { DataSource } from 'typeorm';
+import { dataSourceInMemory as dataSource } from './dataSource';
 import { Route, RouteProps } from '../../../domain/route.entity';
 import { RouteTypeOrmRepository } from './route-typeorm.repository';
-import { RouteSchema } from './route.schema';
 
 const routeProps: RouteProps = {
   title: 'Minha rota',
@@ -9,13 +8,6 @@ const routeProps: RouteProps = {
   endPosition: { lat: -23.55, lng: -46.64 },
 };
 const route = Route.create(routeProps);
-const dataSource = new DataSource({
-  type: 'sqlite',
-  database: ':memory:',
-  synchronize: true,
-  logging: false,
-  entities: [RouteSchema],
-})
 
 beforeEach(async () => {
   await dataSource.initialize();

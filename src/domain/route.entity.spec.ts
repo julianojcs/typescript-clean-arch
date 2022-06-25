@@ -1,7 +1,7 @@
-import { LatLng, Route } from "./route.entity";
+import { LatLng, Route, RouteProps } from "./route.entity";
 import crypto from 'crypto';
 
-let routeProps = {
+let routeProps: RouteProps = {
   id: crypto.randomUUID(),
   title: 'Minha primeira rota', 
   startPosition: { lat: -23.5489, lng: -46.6388 },

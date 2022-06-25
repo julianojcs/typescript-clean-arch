@@ -1,9 +1,9 @@
 import { RouteInMemoryRepository } from "../infra/db/in-memory/route-in-memory.repository";
 import { CreateRouteOutput, CreateRouteUseCase } from "./create-route.use-case";
 import { ListAllRoutesUseCase } from "./list-all-routes.use-case";
-import { Route } from "../domain/route.entity";
+import { Route, RouteProps } from "../domain/route.entity";
 
-const routeProps = {
+const routeProps: RouteProps = {
   title: 'Minha rota', 
   startPosition: { lat: -23.5489, lng: -46.6388 },
   endPosition: { lat: -23.55, lng: -46.64 },
