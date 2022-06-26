@@ -20,7 +20,7 @@ describe('RouteSchema Tests', () => {
     })
     const routeRepo = dataSource.getRepository(Route)
     await routeRepo.save(route)
-    console.log(await routeRepo.findBy( {title: 'Minha primeira rota'} ))
+    // console.log(await routeRepo.findBy( {title: 'Minha primeira rota'} ))
     expect(route.id).toBeDefined();
     expect(route.title).toBe('Minha primeira rota');
     expect(route.startPosition).toStrictEqual({ lat: -23.5489, lng: -46.6388 });

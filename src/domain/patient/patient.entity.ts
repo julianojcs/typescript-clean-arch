@@ -1,23 +1,17 @@
 import crypto from 'crypto';
 import { transformEmail, transformPhone, transformName } from '../../util'
-export const UserRoleDefaultValue = "recepcionista"
-export const UserShiftTimePeriodDefaultValue = ['matutino', 'vespertino']
-export const UserShiftWeekDaysDefaultValue = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira']
 
-export type UserProps = {
+export type PatientProps = {
   id?: string;
   name: string, 
   email: string | null,
   phone: string | null,
-  role?: string,
-  shiftTimePeriod?: Array<string>,
-  shiftWeekDays?: Array<string>,
   isActive: boolean,
 }
 
-export class User {
-  public props: Required<UserProps>
-  constructor(props: UserProps) {
+export class Patient {
+  public props: Required<PatientProps>
+  constructor(props: PatientProps) {
     if (!props) {
       //@ts-expect-error used for ORM
       this.props = {}
@@ -28,15 +22,12 @@ export class User {
       name: transformName(props.name),
       email: transformEmail(props.email),
       phone: transformPhone(props.phone),
-      role: props?.role || UserRoleDefaultValue,
-      shiftTimePeriod: props?.shiftTimePeriod || UserShiftTimePeriodDefaultValue,
-      shiftWeekDays: props?.shiftWeekDays || UserShiftWeekDaysDefaultValue,
       isActive: props?.isActive!==false && true,
     };
   }
 
-  static create(props: UserProps): User {
-    return new User(props);
+  static create(props: PatientProps): Patient {
+    return new Patient(props);
   }
 
   get id() {
@@ -63,31 +54,12 @@ export class User {
   private set phone(value: string | null) {
     this.props.phone = transformPhone(value);
   }
-  get role() {
-    return this.props.role || UserRoleDefaultValue;
-  }
-  private set role(value: string ) {
-    this.props.role = value || UserRoleDefaultValue;
-  }
-  get shiftTimePeriod() {
-    return this.props.shiftTimePeriod || UserShiftTimePeriodDefaultValue;
-  }
-  private set shiftTimePeriod(value: string[]) {
-    this.props.shiftTimePeriod = value || UserShiftTimePeriodDefaultValue;
-  }
-  get shiftWeekDays() {
-    return this.props.shiftWeekDays || UserShiftWeekDaysDefaultValue;
-  }
-  private set shiftWeekDays(value: string[]) {
-    this.props.shiftWeekDays = value || UserShiftWeekDaysDefaultValue;
-  }
   get isActive() {
     return this.props.isActive!==false && true;
   }
   private set isActive(value: boolean) {
     this.props.isActive = value;
   }
-
   updateName(value: string) {
     this.name = transformName(value);
   }
@@ -96,15 +68,6 @@ export class User {
   }
   updatePhone(value: string | null) {
     this.phone = transformPhone(value);
-  }
-  updateRole(value?: string) {
-    this.role = value || 'recepcionista';
-  }
-  updateShiftTimePeriod(value?: string[]) {
-    this.shiftTimePeriod = value || UserShiftTimePeriodDefaultValue;
-  }
-  updateShiftWeekDays(value?: string[]) {
-    this.shiftWeekDays = value || UserShiftWeekDaysDefaultValue;
   }
   updateStatus(value: boolean) {
     this.isActive = value;

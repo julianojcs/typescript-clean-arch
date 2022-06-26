@@ -24,7 +24,6 @@ describe('RouteTypeOrmRepository Tests', () => {
     await repository.insert(route);
 
     const routeFound = await ormRepo.findOneBy({ id: route.id });
-    // console.log(routeFound);
     
     expect(routeFound?.toJSON()).toStrictEqual(route.toJSON());
     expect(routeFound).toStrictEqual(route);
@@ -39,7 +38,6 @@ describe('RouteTypeOrmRepository Tests', () => {
       const route = Route.create({ ...routeProps, title: `Minha rota #${i + 1}` });
       await repository.insert(route);
       routes.push(route);
-      console.log(route);
     }
     const routeList = await repository.findAll();
     

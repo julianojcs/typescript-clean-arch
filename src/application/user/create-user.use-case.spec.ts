@@ -1,4 +1,5 @@
-import { transformEmail, transformName, transformPhone, UserProps } from "../../domain/user/user.entity";
+import { UserProps } from "../../domain/user/user.entity";
+import { transformEmail, transformPhone, transformName } from '../../util'
 import { UserInMemoryRepository } from "../../infra/db/in-memory/user/user-in-memory.repository";
 import { CreateUserUseCase } from "./create-user.use-case";
 
@@ -17,7 +18,6 @@ describe('CreateUserUseCase Tests', () => {
   it('should create a new user', async () => {
     const createUserUseCase = new CreateUserUseCase(repository);  
     const result = await createUserUseCase.execute(userProps);
-    console.log(result);
     expect(repository.items).toHaveLength(1);
     expect(result).toStrictEqual({
       id: repository.items[0].id,

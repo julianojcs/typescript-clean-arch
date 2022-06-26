@@ -1,12 +1,9 @@
 import { User, 
   UserProps, 
-  UserRoleDefaultValue, 
   UserShiftTimePeriodDefaultValue, 
   UserShiftWeekDaysDefaultValue,
-  transformEmail,
-  transformName,
-  transformPhone
 } from "./user.entity";
+import { transformEmail, transformPhone, transformName } from '../../util'
 import crypto from 'crypto';
 
 let userProps: UserProps = {
@@ -22,7 +19,6 @@ let user = User.create(userProps);
 describe('Create User Tests', () => {
   test('constructor', () => {
     user = User.create(userProps);
-    console.log(user);
     expect(user.id).toBeDefined();
     expect(user.name).toBe('John Doe');
     expect(user.email).toBe('john@doe.com');

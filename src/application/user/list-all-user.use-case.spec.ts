@@ -1,7 +1,7 @@
 import { UserInMemoryRepository } from "../../infra/db/in-memory/user/user-in-memory.repository";
 import { CreateUserOutput, CreateUserUseCase } from "./create-user.use-case";
 import { ListAllUsersUseCase } from "./list-all-user.use-case";
-import { User, UserProps } from "../../domain/user/user.entity";
+import { UserProps } from "../../domain/user/user.entity";
 
 const userProps: UserProps = {
   name: "John Doe",

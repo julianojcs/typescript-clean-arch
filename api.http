@@ -1,6 +1,9 @@
 GET http://localhost:3000/
 
 ###
+GET http://localhost:3000/patients
+
+###
 GET http://localhost:3000/users
 
 ###
@@ -24,4 +27,14 @@ Content-Type: application/json
   "name": "juliano costa",
   "email": "juliano@gmail.com",
   "phone": "27981330708"
+}
+
+###
+POST http://localhost:3000/patient
+Content-Type: application/json
+
+{
+  "name": "ryani antonio",
+  "email": "ryani@gmail.com",
+  "phone": "(27)99994-6541"
 }

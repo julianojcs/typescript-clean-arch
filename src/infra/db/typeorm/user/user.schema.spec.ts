@@ -22,7 +22,7 @@ describe('UserSchema Tests', () => {
     const user = User.create(userProps)
     const userRepo = dataSource.getRepository(User)
     await userRepo.save(user)
-    console.log(await userRepo.findBy( {name: 'Jhoe Doe'} ))
+    // console.log(await userRepo.findBy( {name: 'Jhoe Doe'} ))
     expect(user.id).toBeDefined();
     expect(user.name).toBe('John Doe');
     expect(user.email).toBe('john@doe.com');
